@@ -1,9 +1,11 @@
 import React from 'react';
-import { Scene, Router, Tabs, Stack } from 'react-native-router-flux';
+import { Scene, Router, Tabs, Stack, Actions } from 'react-native-router-flux';
 import { Icon } from 'native-base';
 import LoginForm from './components/LoginForm';
 import NovelList from './components/NovelList';
+import NovelCreate from './components/NovelCreate';
 import DefaultProps from './constants/navigation';
+import NovelCurrent from './components/NovelCurrent';
 
 const RouterComponent = () => {
   return (
@@ -22,21 +24,31 @@ const RouterComponent = () => {
             icon={() => <Icon name="list" {...DefaultProps.icons} />}
             {...DefaultProps.navbarProps}
           >
-            <Scene 
-              key="main"
-              hideNavBar
-            >
-              <Scene key="novelList" component={NovelList} title="List novel" />
+            <Scene key="main">
+              <Scene
+                rightTitle="Add"
+                onRight={() => Actions.novelCreate()}
+                key="novel List"
+                component={NovelList}
+                title="List novel"
+              />
+              <Scene
+                key="novelCreate"
+                component={NovelCreate}
+                title="Create novel"
+              />
             </Scene>
           </Stack>
 
           <Stack
-            key="NovelTab"
+            key="novelTab"
             hideNavBar
             icon={() => <Icon name="book" {...DefaultProps.icons} />}
             {...DefaultProps.navbarProps}
           >
-            <Scene key="curentNovel" component={NovelList} title="Curent novel" />
+            <Scene key="current">
+              <Scene key="curentNovel" component={NovelCurrent} title="Curent novel" />
+            </Scene>
           </Stack>
 
           <Stack
@@ -47,7 +59,11 @@ const RouterComponent = () => {
             {...DefaultProps.navbarProps}
           >
             <Scene key="auth">
-              <Scene key="login" component={LoginForm} title="Please Login" />
+              <Scene 
+                key="login" 
+                component={LoginForm} 
+                title="Please Login" 
+              />
             </Scene>
           </Stack>
 
