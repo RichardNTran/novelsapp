@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
-import { novelsFetch } from '../actions';
+import { novelsFetch, novelsFetchLocal } from '../actions';
 import NovelItem from './NovelItem';
+import { SearchBarLocal, Card, CardSection } from './common';
 
 class NovelList extends Component {
 
@@ -15,8 +16,20 @@ class NovelList extends Component {
     this.createDataSource(nextProps);
   }
 
-  createDataSource({ novels }) {
-    this.dataSource = novels;
+  getValue(value) {
+    console.log(value);
+  }
+
+  handleChangeText(input) {
+    return input.replace(/^\s+|\s+$/g, '');
+  }
+
+  createDataSource({ novelsLocal }) {
+    this.dataSource = novelsLocal;
+  }
+
+  handleResults(results) {
+    this.props.novelsFetchLocal(results);
   }
 
   renderItem(novel) {
@@ -25,20 +38,36 @@ class NovelList extends Component {
 
   render() {
     return (
-      <FlatList
-        numColumns={2}
-        data={this.dataSource}
-        renderItem={this.renderItem}
-      />
+      <View>
+        <SearchBarLocal
+          placeholder='search novel name'
+          getValue={this.getValue.bind(this)}
+          items={this.props.novels}
+          handleResults={results => this.handleResults(results)}
+          handleChangeText={this.handleChangeText.bind(this)}
+        />
+        <Card >
+          <CardSection>
+            <FlatList
+              numColumns={1}
+              data={this.dataSource}
+              renderItem={this.renderItem}
+            />
+          </CardSection>
+        </Card >
+      </View >
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const novels = _.map(state.novels, (val, uid) => {
+  const novels = _.map(state.listData.novels, (val, uid) => {
     return { ...val, uid };
   });
-  return { novels };
+  const novelsLocal = _.map(state.listData.novelsLocal, (val, uid) => {
+    return { ...val, uid };
+  });
+  return { novels, novelsLocal };
 };
 
-export default connect(mapStateToProps, { novelsFetch })(NovelList);
+export default connect(mapStateToProps, { novelsFetch, novelsFetchLocal })(NovelList);

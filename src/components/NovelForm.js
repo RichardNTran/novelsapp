@@ -9,8 +9,8 @@ class NovelForm extends Component {
 
   openPicker() {
     ImagePicker.openPicker({
-      width: 300,
-      height: 300,
+      width: 100,
+      height: 200,
       cropping: true,
       mediaType: 'photo'
     }).then(image => {
@@ -36,19 +36,19 @@ class NovelForm extends Component {
 
         <CardSection>
           <Input
-            label="Title"
-            placeholder="Title of novel"
-            value={this.props.title}
-            onChangeText={value => this.props.novelUpdate({ prop: 'title', value })}
+            label="Description"
+            placeholder=" description"
+            value={this.props.description}
+            onChangeText={value => this.props.novelUpdate({ prop: 'description', value })}
           />
         </CardSection>
 
         <CardSection>
           <Input
-            label="Description"
-            placeholder=" description"
-            value={this.props.description}
-            onChangeText={value => this.props.novelUpdate({ prop: 'description', value })}
+            label="Author"
+            placeholder="author name"
+            value={this.props.author}
+            onChangeText={value => this.props.novelUpdate({ prop: 'author', value })}
           />
         </CardSection>
 
@@ -64,8 +64,8 @@ class NovelForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { name, title, description, uri, imagePath } = state.novelForm;
-  return { name, title, description, uri, imagePath };
+  const { name, description, author, uri, imagePath } = state.novelForm;
+  return { name, description, author, uri, imagePath };
 };
 
 const styles = {
