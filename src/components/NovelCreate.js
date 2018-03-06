@@ -7,8 +7,8 @@ import NovelForm from './NovelForm';
 class NovelCreate extends Component {
 
   onButtonPress() {
-    const { name, title, description, imagePath } = this.props;
-    this.props.novelCreate({ name, title, description, imagePath });
+    const { name, author, description, imagePath } = this.props;
+    this.props.novelCreate({ name, author, description, imagePath });
   }
 
   render() {
@@ -26,9 +26,8 @@ class NovelCreate extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { name, title, description, imagePath } = state.novelForm;
-
-  return { name, title, description, imagePath };
+  const { name, description, uri, author, imagePath } = state.novelForm;
+  return { name, description, uri, author, imagePath };
 };
 
 export default connect(mapStateToProps, { novelUpdate, novelCreate })(NovelCreate);

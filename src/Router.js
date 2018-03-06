@@ -26,6 +26,7 @@ const RouterComponent = () => {
           >
             <Scene key="main">
               <Scene
+                hideNavBar
                 rightTitle="Add"
                 onRight={() => Actions.novelCreate()}
                 key="novel List"
@@ -59,10 +60,10 @@ const RouterComponent = () => {
             {...DefaultProps.navbarProps}
           >
             <Scene key="auth">
-              <Scene 
-                key="login" 
-                component={LoginForm} 
-                title="Please Login" 
+              <Scene
+                key="login"
+                component={LoginForm}
+                title="Please Login"
               />
             </Scene>
           </Stack>

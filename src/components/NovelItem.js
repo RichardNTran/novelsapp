@@ -8,20 +8,35 @@ class ListItem extends Component {
   }
 
   render() {
-    const { name, uri } = this.props.novel.item;
-    console.log(this.props.novel);
+    const { name, uri, description, author } = this.props.novel.item;
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
-          <CardSection>
-            <Text style={styles.titleStyle}>
-              {name}
-            </Text>
+          <CardSection style={styles.rowStyle}>
             <ImageThumnail
               uri={uri}
               height={200}
-              width={200}
+              width={100}
+              style={styles.imageStyle}
             />
+
+            <View
+              style={styles.contentStyle}
+            >
+              <Text style={styles.nameStyle}>
+                {name}
+              </Text>
+              <Text style={styles.authorStyle}>
+                {author}
+              </Text>
+              <Text
+                style={styles.descriptionStyle}
+                numberOfLines={3}
+              >
+                {description}
+              </Text>
+            </View>
+
           </CardSection>
         </View>
       </TouchableWithoutFeedback>
@@ -30,8 +45,30 @@ class ListItem extends Component {
 }
 
 const styles = {
-  titleStyle: {
+  rowStyle: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  imageStyle: {
+    flex: 3,
+    flexDirection: 'column'
+  },
+  contentStyle: {
+    flex: 7,
+    flexDirection: 'column'
+  },
+  nameStyle: {
+    fontSize: 24,
+    paddingLeft: 15,
+    fontWeight: 'bold'
+  },
+  authorStyle: {
     fontSize: 18,
+    fontStyle: 'italic',
+    paddingLeft: 15
+  },
+  descriptionStyle: {
+    fontSize: 16,
     paddingLeft: 15
   }
 };

@@ -4,7 +4,6 @@ import { TouchableOpacity, Image } from 'react-native';
 class ImageThumnail extends Component {
   renderImage() {
     const { uri, imagePath } = this.props;
-    console.log(this.props);
     if (typeof (imagePath) !== 'undefined' && imagePath !== '') {
       return (
         <TouchableOpacity onPress={this.props.openPicker}>
@@ -34,7 +33,7 @@ class ImageThumnail extends Component {
 }
 const styles = {
   thumnaiSltyle: {
-    height: 100,
+    height: 150,
     width: 100
   }
 };

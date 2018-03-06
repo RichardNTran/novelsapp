@@ -6,5 +6,5 @@ import NovelReducer from './NovelReducer';
 export default combineReducers({
   auth: AuthReducer,
   novelForm: NovelFormReducer,
-  novels: NovelReducer
+  listData: NovelReducer
 }); 
