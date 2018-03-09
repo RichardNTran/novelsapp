@@ -17,6 +17,7 @@ const RouterComponent = () => {
           swipeEnabled
           type="replace"
           showLabel={false}
+          tabBarPosition="bottom"
         >
           <Stack
             key="mainTab"
