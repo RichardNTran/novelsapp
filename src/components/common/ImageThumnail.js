@@ -15,7 +15,10 @@ class ImageThumnail extends Component {
     }
     if (typeof (uri) !== 'undefined' && uri !== '') {
       return (
-        <TouchableOpacity onPress={this.props.openPicker}>
+        <TouchableOpacity
+          onPress={this.props.openPicker}
+          disabled={this.props.disabled}
+        >
           <Image
             onPress={this.props.openPicker}
             style={styles.thumnaiSltyle}

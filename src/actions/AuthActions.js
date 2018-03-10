@@ -42,7 +42,7 @@ export const loginUserSuccess = (dispatch, user) => {
     payload: user
   });
 
-  Actions.main();
+  Actions.mainTab();
 };
 
 export const loginUserFail = (dispatch, error) => {
