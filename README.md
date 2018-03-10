@@ -1,11 +1,6 @@
-# Template for NovelApp projects
-
+# NovelApp project
+This is native application for iOS and Android by 'react-native'. Main function is allow user read novel, check and suggest novel for user.
 ## Implement Base Line
-## [1. Pull request checklist](PULL_REQUEST_TEMPLATE.md)
-
-## [2. Coding Conventions](CODING_CONVENTIONS.md)
-
-## [3. Contributing](https://github.com/)
 
 For bugs, questions and discussions please use the **Github Issues**.
 
