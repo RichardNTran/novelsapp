@@ -263,7 +263,7 @@ export default class Search extends Component {
             <View
               style={[
                 styles.nav,
-                { height: (Platform.OS === 'ios' ? 52 : 62) + heightAdjust }
+                { height: (Platform.OS === 'ios' ? 54 : 64) + heightAdjust }
               ]}
             >
               {!hideBack && (
@@ -361,10 +361,10 @@ const styles = StyleSheet.create({
     zIndex: 10,
     position: 'absolute',
     elevation: 2,
-    shadowRadius: 5
+    shadowRadius: 5,
   },
   navWrapper: {
-    width: Dimensions.get('window').width
+    width: Dimensions.get('window').width,
   },
   nav: {
     ...Platform.select({
@@ -378,6 +378,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center'
+   
   },
   input: {
     ...Platform.select({

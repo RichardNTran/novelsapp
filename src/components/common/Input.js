@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TextInput } from 'react-native';
 
 const Input = ({
+  keyboardType = 'default',
   label,
   value,
   onChangeText,
@@ -18,6 +19,7 @@ const Input = ({
         value={value}
         onChangeText={onChangeText}
         style={inputStyle}
+        keyboardType={keyboardType}
       />
     </View>
   );

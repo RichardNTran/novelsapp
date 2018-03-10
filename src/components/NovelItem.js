@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { CardSection, ImageThumnail } from './common';
 
 class ListItem extends Component {
 
   onRowPress() {
+    Actions.chapterList({ chapterForm: { currentNovel: this.props.novel.item } });
   }
 
   render() {
@@ -18,6 +20,7 @@ class ListItem extends Component {
               height={200}
               width={100}
               style={styles.imageStyle}
+              disabled
             />
 
             <View
@@ -36,7 +39,6 @@ class ListItem extends Component {
                 {description}
               </Text>
             </View>
-
           </CardSection>
         </View>
       </TouchableWithoutFeedback>
