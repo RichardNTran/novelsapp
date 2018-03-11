@@ -42,9 +42,7 @@ const RouterComponent = () => {
           <Scene
             key="chapterList"
             title="Novel Chapters"
-            rightTitle="Add"
             component={ChapterList}
-            onRight={() => Actions.chapterCreate()}
           />
           <Scene key="chapterCreate" component={ChapterCreate} title="Create Chapter" />
         </Stack>
@@ -57,7 +55,7 @@ const RouterComponent = () => {
           <Scene
             key="currentNovel"
             title="Current Novels"
-            component={ChapterList}
+            component={NovelCurrent}
           />
         </Stack>
 

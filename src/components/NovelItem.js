@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { CardSection, ImageThumnail } from './common';
+import { loadChapterList } from '../actions';
 
 class ListItem extends Component {
 
   onRowPress() {
-    Actions.chapterList({ chapterForm: { currentNovel: this.props.novel.item } });
+    // Actions.chapterList({ chapterList: { currentNovel: this.props.novel.item } });
+    this.props.loadChapterList({ currentNovel: this.props.novel.item });
   }
 
   render() {
@@ -75,4 +78,4 @@ const styles = {
   }
 };
 
-export default ListItem;
+export default connect(null, { loadChapterList })(ListItem);

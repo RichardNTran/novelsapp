@@ -44,7 +44,6 @@ export const novelsFetch = () => {
 };
 
 export const novelsFetchLocal = (results) => {
-  console.log(results);
   return (dispatch) => {
     dispatch({
       type: NOVELS_FETCH_LOCAL_SUCCESS,
@@ -52,4 +51,3 @@ export const novelsFetchLocal = (results) => {
     });
   };
 };
-
