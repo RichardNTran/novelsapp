@@ -1,21 +1,28 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { Card, CardSection, ImageThumnail } from '../common';
-import { chapterUpdate } from '../../actions';
+import { chaptersNovelUpdate, chaptersFetch } from '../../actions';
+import ChapterItem from './ChapterItem';
 
 class ChapterList extends Component {
-  componentWillReceivePropscallback(){
-    console.log(this.state);
-    console.log(this.props);
-  }
+
   componentWillMount() {
-    console.log(this.props);
-    _.each(this.props.chapterForm, (value, prop) => {
-      this.props.chapterUpdate({ prop, value });
-    });
+    this.props.chaptersFetch({ currentNovel: this.props.currentNovel });
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.createDataSource(nextProps);
+  }
+  createDataSource({ chapters }) {
+    this.dataSource = chapters;
+  }
+
+  renderItem(chapter) {
+    return <ChapterItem chapter={chapter} />;
+  }
+
   render() {
     const { name, author, description, uri } = this.props.currentNovel;
     return (
@@ -45,7 +52,11 @@ class ChapterList extends Component {
             </Text>
           </View>
         </CardSection>
-
+        <FlatList
+          numColumns={1}
+          data={this.dataSource}
+          renderItem={this.renderItem}
+        />
         {/* <CardSection style={styles.chapterListStyle}>
           <Text> list chapter</Text>
         </CardSection> */}
@@ -88,8 +99,12 @@ const styles = {
 };
 
 const mapStateToProp = (state) => {
-  const { currentNovel } = state.chapterForm;
-  return { currentNovel };
+  const currentNovel = state.chapterList.currentNovel;
+  const chapters = _.map(state.chapterList.chapters, (val, uid) => {
+    return { ...val, uid };
+  })
+  return { currentNovel, chapters };
+
 };
 
-export default connect(mapStateToProp, { chapterUpdate })(ChapterList);
+export default connect(mapStateToProp, { chaptersNovelUpdate, chaptersFetch })(ChapterList);
