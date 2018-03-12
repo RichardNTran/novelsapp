@@ -13,6 +13,7 @@ const RouterComponent = () => {
   return (
     <Router
       navigationBarStyle={styles.navBar}
+      tabBarPosition = 'bottom'
     >
       <Tabs
         key="tabbar"
@@ -48,7 +49,7 @@ const RouterComponent = () => {
         </Stack>
 
         <Stack
-          navBarBackgroundColor= 'blue'
+          navBarBackgroundColor='blue'
           key="currentTab"
           icon={() => <Icon name="book" {...DefaultProps.icons} />}
         >
@@ -82,5 +83,5 @@ const styles = {
   navBar: {
     // backgroundColor:'#0D47A1',
   }
-}
+};
 export default RouterComponent;

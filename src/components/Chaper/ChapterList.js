@@ -57,9 +57,6 @@ class ChapterList extends Component {
           data={this.dataSource}
           renderItem={this.renderItem}
         />
-        {/* <CardSection style={styles.chapterListStyle}>
-          <Text> list chapter</Text>
-        </CardSection> */}
       </Card>
     );
   }
@@ -102,9 +99,8 @@ const mapStateToProp = (state) => {
   const currentNovel = state.chapterList.currentNovel;
   const chapters = _.map(state.chapterList.chapters, (val, uid) => {
     return { ...val, uid };
-  })
+  });
   return { currentNovel, chapters };
-
 };
 
 export default connect(mapStateToProp, { chaptersNovelUpdate, chaptersFetch })(ChapterList);
