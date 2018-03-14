@@ -6,20 +6,24 @@ import NovelList from './components/NovelList';
 import NovelCreate from './components/NovelCreate';
 import DefaultProps from './constants/navigation';
 import NovelCurrent from './components/NovelCurrent';
-import ChapterList from './components/Chaper/ChapterList';
-import ChapterCreate from './components/Chaper/ChapterCreate';
+import ChapterList from './components/Chapter/ChapterList';
+import ChapterCreate from './components/Chapter/ChapterCreate';
+import ChapterRead from './components/Chapter/ChapterRead';
 
 const RouterComponent = () => {
   return (
     <Router
       navigationBarStyle={styles.navBar}
-      tabBarPosition = 'bottom'
+      tabBarPosition='bottom'
+     
     >
       <Tabs
         key="tabbar"
         swipeEnabled
         type="replace"
         showLabel={false}
+        activeBackgroundColor="white"
+        inactiveBackgroundColor="rgba(236, 213, 255, 0.5)"
       >
         <Stack
           initial
@@ -34,6 +38,7 @@ const RouterComponent = () => {
             key="novelList"
             component={NovelList}
             title="List novel"
+           
           />
           <Scene
             key="novelCreate"
@@ -46,12 +51,14 @@ const RouterComponent = () => {
             component={ChapterList}
           />
           <Scene key="chapterCreate" component={ChapterCreate} title="Create Chapter" />
+          <Scene key="chapterRead" component={ChapterRead} title="Reading" />
         </Stack>
-
+          
         <Stack
           navBarBackgroundColor='blue'
           key="currentTab"
           icon={() => <Icon name="book" {...DefaultProps.icons} />}
+          tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
         >
           <Scene
             key="currentNovel"
@@ -64,6 +71,7 @@ const RouterComponent = () => {
           key="authTab"
           icon={() => <Icon name="contact" {...DefaultProps.icons} />}
           {...DefaultProps.navbarProps}
+          tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
         >
           <Scene
             key="login"
@@ -82,6 +90,9 @@ const RouterComponent = () => {
 const styles = {
   navBar: {
     // backgroundColor:'#0D47A1',
+  },
+  tabBarSelectedItemStyle: {
+    backgroundColor: '#ECD5FF'
   }
 };
 export default RouterComponent;

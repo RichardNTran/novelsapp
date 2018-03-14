@@ -19,8 +19,8 @@ class ChapterList extends Component {
     this.dataSource = chapters;
   }
 
-  renderItem(chapter) {
-    return <ChapterItem chapter={chapter} />;
+  renderItem(chapter, currentNovel) {
+    return <ChapterItem chapter={chapter} novelUid={currentNovel.uid} />;
   }
 
   render() {
@@ -52,11 +52,14 @@ class ChapterList extends Component {
             </Text>
           </View>
         </CardSection>
-        <FlatList
-          numColumns={1}
-          data={this.dataSource}
-          renderItem={this.renderItem}
-        />
+        <CardSection>
+
+          <FlatList
+            numColumns={1}
+            data={this.dataSource}
+            renderItem={item => this.renderItem(item, this.props.currentNovel)}
+          />
+        </CardSection>
       </Card>
     );
   }
@@ -100,6 +103,7 @@ const mapStateToProp = (state) => {
   const chapters = _.map(state.chapterList.chapters, (val, uid) => {
     return { ...val, uid };
   });
+  console.log(chapters);
   return { currentNovel, chapters };
 };
 

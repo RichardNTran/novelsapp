@@ -21,10 +21,12 @@ export default (state = INITIAL_STATE, action) => {
     case CHAPTER_UPDATE:
       return { ...state, [action.payload.prop]: action.payload.value };
     case CHAPTER_CREATE:
-      return {...state,   
+      return {
+        ...state,
         index: '',
         title: '',
-        content: '',};
+        content: '',
+      };
     default:
       return state;
   }

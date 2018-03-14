@@ -22,5 +22,7 @@ export const IMAGE_CREATE = 'image_create';
 export const CHAPTER_UPDATE = 'chapter_update';
 export const CHAPTER_CREATE = 'chapter_create';
 
-export const CHAPTERS_NOVEL_LOAD = 'chapters_novel_load'
-export const CHAPTERS_FETCH_SUCCESS = 'chapters_fetch_success'
+export const CHAPTERS_NOVEL_LOAD = 'chapters_novel_load';
+export const CHAPTERS_FETCH_SUCCESS = 'chapters_fetch_success';
+
+export const CHAPTER_LOAD = 'chapter_load';
