@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import { CardSection, ImageThumnail } from './common';
 import { loadChapterList } from '../actions';
 

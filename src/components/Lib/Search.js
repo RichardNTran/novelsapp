@@ -300,7 +300,7 @@ export default class Search extends Component {
                     fontSize,
                     color: textColor,
                     fontFamily,
-                    marginLeft: hideBack ? 30 : 0,
+                    marginLeft: hideBack ? 0 : 30,
                     marginTop: Platform.OS === 'ios' ? (heightAdjust / 2) + 10 : 0
                   }
                 ]}
@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center'
-   
+
   },
   input: {
     ...Platform.select({
