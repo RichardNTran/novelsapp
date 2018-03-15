@@ -1,4 +1,10 @@
-import { CHAPTERS_FETCH_SUCCESS, CHAPTERS_NOVEL_LOAD, CHAPTER_LOAD } from '../actions/types';
+import {
+  CHAPTERS_FETCH_SUCCESS,
+  CHAPTERS_NOVEL_LOAD,
+  CHAPTER_LOAD,
+  CHAPTER_LOAD_BACK,
+  CHAPTER_LOAD_NEXT
+} from '../actions/types';
 
 const INITIAL_STATE = {
   chapters: {},
@@ -19,7 +25,9 @@ export default (state = INITIAL_STATE, action) => {
     case CHAPTERS_NOVEL_LOAD:
       return { ...state, [action.payload.prop]: action.payload.value };
     case CHAPTER_LOAD:
-    return { ...state, [action.payload.prop]: action.payload.value };
+    case CHAPTER_LOAD_BACK:
+    case CHAPTER_LOAD_NEXT:
+      return { ...state, [action.payload.prop]: action.payload.value };
     default:
       return state;
   }

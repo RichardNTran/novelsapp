@@ -26,3 +26,5 @@ export const CHAPTERS_NOVEL_LOAD = 'chapters_novel_load';
 export const CHAPTERS_FETCH_SUCCESS = 'chapters_fetch_success';
 
 export const CHAPTER_LOAD = 'chapter_load';
+export const CHAPTER_LOAD_BACK = 'chapter_load_back';
+export const CHAPTER_LOAD_NEXT = 'chapter_load_next';
