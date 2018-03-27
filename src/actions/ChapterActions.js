@@ -5,7 +5,9 @@ import {
   CHAPTER_CREATE,
   CHAPTERS_FETCH_SUCCESS,
   CHAPTERS_NOVEL_LOAD,
-  CHAPTER_LOAD
+  CHAPTER_LOAD,
+  CHAPTER_LOAD_NEXT,
+  CHAPTER_LOAD_BACK
 } from './types';
 
 export const chapterUpdate = ({ prop, value }) => {
@@ -49,7 +51,7 @@ export const loadChapterList = ({ currentNovel }) => {
   };
 };
 
-export const loadChapter = ({ novelUid, chapterIndex }) => {
+export const loadChapter = ({ novelUid, chapterIndex = 1 }) => {
   return (dispatch) => {
     const chaptersRef = firebase.database().ref(`/novels/${novelUid}/chapters/`);
     chaptersRef.orderByChild('index').equalTo(chapterIndex).on('value', snapshot => {
@@ -62,10 +64,29 @@ export const loadChapter = ({ novelUid, chapterIndex }) => {
   };
 };
 
-export const nextChapter = ({ novelUid, chapterIndex }) => {
-  console.log(novelUid + chapterIndex);
+export const nextChapter = ({ novelUid, chapterIndex = 1 }) => {
+  return (dispatch) => {
+    const chaptersRef = firebase.database().ref(`/novels/${novelUid}/chapters/`);
+    const index = Number.parseInt(chapterIndex, 10) + 1;
+    console.log(index);
+    chaptersRef.orderByChild('index').equalTo(index.toString()).on('value', snapshot => {
+      dispatch({
+        type: CHAPTER_LOAD_NEXT,
+        payload: { prop: 'chapter', value: snapshot.val() }
+      });
+    });
+  };
 };
 
-export const backChapter = ({ novelUid, chapterIndex }) => {
-  console.log(novelUid, chapterIndex);
+export const backChapter = ({ novelUid, chapterIndex = 1 }) => {
+  return (dispatch) => {
+    const chaptersRef = firebase.database().ref(`/novels/${novelUid}/chapters/`);
+    const index = Number.parseInt(chapterIndex, 10) - 1;
+    chaptersRef.orderByChild('index').equalTo(index.toString()).on('value', snapshot => {
+      dispatch({
+        type: CHAPTER_LOAD_BACK,
+        payload: { prop: 'chapter', value: snapshot.val() }
+      });
+    });
+  };
 };
