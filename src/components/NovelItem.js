@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 // import { Actions } from 'react-native-router-flux';
 import { CardSection, ImageThumnail } from './common';
 import { loadChapterList } from '../actions';
 
-class ListItem extends Component {
+class ListItem extends PureComponent {
 
   onRowPress() {
     // Actions.chapterList({ chapterList: { currentNovel: this.props.novel.item } });

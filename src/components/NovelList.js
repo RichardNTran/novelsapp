@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
 import { novelsFetch, novelsFetchLocal } from '../actions';
 import NovelItem from './NovelItem';
 import { SearchBarLocal } from './common';
 
-class NovelList extends Component {
+class NovelList extends PureComponent {
 
   componentWillMount() {
     this.props.novelsFetch();

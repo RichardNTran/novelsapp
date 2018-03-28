@@ -8,3 +8,4 @@ export * from './ImageThumnail';
 export * from './SearchBarLocal';
 export * from './Button';
 export * from './IconButton';
+export * from './dropdown/Dropdown';
