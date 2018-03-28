@@ -74,9 +74,12 @@ const mapStateToProps = (state) => {
   const novels = _.map(state.listData.novels, (val, uid) => {
     return { ...val, uid };
   });
-  const novelsLocal = _.map(state.listData.novelsLocal, (val, uid) => {
-    return { ...val, uid };
-  });
+  let novelsLocal = {};
+  if (state.listData.novelsLocal === null) {
+    novelsLocal = novels;
+  } else {
+    novelsLocal = state.listData.novelsLocal;
+  }
   return { novels, novelsLocal };
 };
 
