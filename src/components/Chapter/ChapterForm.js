@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Input, CardSection } from '../common';
 import { chapterUpdate } from '../../actions';
 
-class ChapterForm extends Component {
+class ChapterForm extends PureComponent {
 
   render() {
     return (

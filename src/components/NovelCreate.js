@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { novelUpdate, novelCreate } from '../actions';
 import { Button, Card, CardSection } from './common';
 import NovelForm from './NovelForm';
 
-class NovelCreate extends Component {
+class NovelCreate extends PureComponent {
 
   onButtonPress() {
     const { name, author, description, imagePath } = this.props;

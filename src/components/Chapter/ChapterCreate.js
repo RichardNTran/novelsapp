@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Button, Card, CardSection } from '../common';
 import ChapterForm from './ChapterForm';
 import { chapterCreate } from '../../actions';
 
-class ChapterCreate extends Component {
+class ChapterCreate extends PureComponent {
 
   onCreateChapterPress() {
     const { index, title, content, currentNovel } = this.props;

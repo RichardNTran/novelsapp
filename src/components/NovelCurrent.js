@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Text } from 'react-native';
 import { Card } from './common';
 
-class NovelCurrent extends Component {
+class NovelCurrent extends PureComponent {
   render() {
     return (
       <Card>

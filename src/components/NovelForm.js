@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-crop-picker';
 import { novelUpdate } from '../actions';
 import { CardSection, Input, ImageThumnail } from './common';
 
-class NovelForm extends Component {
+class NovelForm extends PureComponent {
 
   openPicker() {
     ImagePicker.openPicker({

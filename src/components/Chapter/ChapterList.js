@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, FlatList } from 'react-native';
-import { Card, CardSection, ImageThumnail } from '../common';
+import { Card, CardSection, ImageThumnail, Dropdown } from '../common';
 import { chaptersNovelUpdate, chaptersFetch } from '../../actions';
 import ChapterItem from './ChapterItem';
 
-class ChapterList extends Component {
+class ChapterList extends PureComponent {
 
   componentWillMount() {
     this.props.chaptersFetch({ currentNovel: this.props.currentNovel });
@@ -15,6 +15,11 @@ class ChapterList extends Component {
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps);
   }
+
+  onChangeText(value, index) {
+    this.props.chaptersFetch({ currentNovel: this.props.currentNovel, indexPage: index });
+  }
+
   createDataSource({ chapters }) {
     this.dataSource = chapters;
   }
@@ -25,6 +30,7 @@ class ChapterList extends Component {
 
   render() {
     const { name, author, description, uri } = this.props.currentNovel;
+    const { pagingList, defaultPaging } = this.props;
     return (
       <Card>
         <CardSection style={styles.rowStyle}>
@@ -52,8 +58,19 @@ class ChapterList extends Component {
             </Text>
           </View>
         </CardSection>
-        <CardSection>
+        <CardSection style={{ justifyContent: 'center' }}>
+          <Dropdown
+            value={defaultPaging}
+            onChangeText={this.onChangeText.bind(this)}
+            label='Chapters'
+            data={pagingList}
+            containerStyle={{
+              justifyContent: 'center',
+            }}
+          />
+        </CardSection>
 
+        <CardSection>
           <FlatList
             numColumns={1}
             data={this.dataSource}
@@ -66,10 +83,6 @@ class ChapterList extends Component {
 }
 
 const styles = {
-  // rowStyle: {
-  //   flex: 1,
-  //   flexDirection: 'row'
-  // },
   imageStyle: {
     flex: 3,
     flexDirection: 'column'
@@ -97,14 +110,26 @@ const styles = {
     flexDirection: 'column'
   }
 };
+const generaterPagingData = (totalChapters, pageSize) => {
+  const pagingData = [];
+  const count = totalChapters / pageSize;
+  for (let i = 0; i <= count; i++) {
+    const startAt = i === 0 ? 1 : (pageSize * i) + 1;
+    const endAt = totalChapters > pageSize * (i + 1) ? pageSize * (i + 1) : totalChapters;
+    pagingData.push({ value: `${startAt}-${endAt}`, label: `${startAt}-${endAt}` });
+  }
+  console.log(pagingData);
+  return pagingData;
+};
 
 const mapStateToProp = (state) => {
   const currentNovel = state.chapterList.currentNovel;
   const chapters = _.map(state.chapterList.chapters, (val, uid) => {
     return { ...val, uid };
   });
-  console.log(chapters);
-  return { currentNovel, chapters };
+  const pagingList = generaterPagingData(currentNovel.totalChapters, 10);
+  const defaultPaging = pagingList[0].value;
+  return { currentNovel, chapters, pagingList, defaultPaging };
 };
 
 export default connect(mapStateToProp, { chaptersNovelUpdate, chaptersFetch })(ChapterList);

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ScrollView, Dimensions, Text } from 'react-native';
 import { connect } from 'react-redux';
 import HTML from 'react-native-render-html';
@@ -7,7 +7,7 @@ import { Card, CardSection, IconButton } from '../common';
 import { nextChapter, backChapter } from '../../actions';
 import { imageResouces } from '../../resouces/index';
 
-class ChapterRead extends Component {
+class ChapterRead extends PureComponent {
 
   onBackChapter() {
     const { currentNovel, index } = this.props;
@@ -20,7 +20,7 @@ class ChapterRead extends Component {
   }
 
   render() {
-    const { index, content, haveLastChapter, haveNextChapter, currentNovel } = this.props;
+    const { index, content, haveLastChapter, haveNextChapter } = this.props;
 
 
     return (
@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
   const currentNovel = state.chapterList.currentNovel;
   const { index, title, content, isLast } = chapter[0];
   const haveNextChapter = !isLast;
-  const haveLastChapter = !(index === '1');
+  const haveLastChapter = !(index === 1);
   return { index, title, content, haveNextChapter, haveLastChapter, currentNovel };
 };
 

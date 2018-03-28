@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Spinner, Button } from './common';
 
-class LoginForm extends Component {
+class LoginForm extends PureComponent {
 
   onEmailChange(text) {
     this.props.emailChanged(text);

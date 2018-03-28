@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from '../common';
 import { loadChapter } from '../../actions';
 
-class ChapterItem extends Component {
+class ChapterItem extends PureComponent {
   chapterPress() {
     this.props.loadChapter({ 
       novelUid: this.props.novelUid, 

@@ -14,7 +14,8 @@ const INITIAL_STATE = {
     description: '',
     uri: 'https://i.imgur.com/K3KJ3w4h.jpg',
     author: '',
-    imagePath: ''
+    imagePath: '',
+    totalChapters: 0,
   }
 };
 
