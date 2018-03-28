@@ -33,7 +33,6 @@ export const chaptersFetch = ({ currentNovel, indexPage = 0 }) => {
   const pageSize = 10;
   const startAt = indexPage === 0 ? 1 : (pageSize * indexPage) + 1;
 
-  console.log(startAt);
   return (dispatch) => {
     firebase.database().ref(`/novels/${currentNovel.uid}/chapters`)
       .orderByChild('index')

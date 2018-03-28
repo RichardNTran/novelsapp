@@ -12,17 +12,17 @@ class ChapterRead extends PureComponent {
   onBackChapter() {
     const { currentNovel, index } = this.props;
     this.props.backChapter({ novelUid: currentNovel.uid, chapterIndex: index });
+    this.refs.scrollView.scrollTo({ x: 0, y: 0, animated: false });
   }
 
   onNextChapter() {
     const { currentNovel, index } = this.props;
     this.props.nextChapter({ novelUid: currentNovel.uid, chapterIndex: index });
+    this.refs.scrollView.scrollTo({ x: 0, y: 0, animated: false });
   }
 
   render() {
     const { index, content, haveLastChapter, haveNextChapter } = this.props;
-
-
     return (
       <Card>
         <CardSection style={styles.indexPagingStyle}>
@@ -38,11 +38,9 @@ class ChapterRead extends PureComponent {
             onPress={this.onNextChapter.bind(this)}
           />
         </CardSection>
-        <CardSection>
-          <ScrollView>
-            <HTML html={content} imagesMaxWidth={Dimensions.get('window').width} />
-          </ScrollView>
-        </CardSection>
+        <ScrollView ref='scrollView'>
+          <HTML html={content} imagesMaxWidth={Dimensions.get('window').width} />
+        </ScrollView>
       </Card>
     );
   }

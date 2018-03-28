@@ -65,18 +65,18 @@ class ChapterList extends PureComponent {
             label='Chapters'
             data={pagingList}
             containerStyle={{
+              flexDirection: 'column',
               justifyContent: 'center',
             }}
           />
         </CardSection>
+        <FlatList
+          numColumns={1}
+          data={this.dataSource}
+          renderItem={item => this.renderItem(item, this.props.currentNovel)}
 
-        <CardSection>
-          <FlatList
-            numColumns={1}
-            data={this.dataSource}
-            renderItem={item => this.renderItem(item, this.props.currentNovel)}
-          />
-        </CardSection>
+        />
+
       </Card>
     );
   }
