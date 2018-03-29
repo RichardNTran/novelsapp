@@ -9,7 +9,7 @@ For bugs, questions and discussions please use the **Github Issues**.
 
 Thank you to all the contributors on this project. Your help is much appreciated.
 
-## 2. 
+## 2. Screens App
 
 ![Main screen novels](https://i.imgur.com/9wwBLKF.png)
 ![List Chapters](https://i.imgur.com/GT5oJhs.png)
