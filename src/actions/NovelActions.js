@@ -4,7 +4,8 @@ import {
   NOVEL_UPDATE,
   NOVEL_CREATE,
   NOVELS_FETCH_SUCCESS,
-  NOVELS_FETCH_LOCAL_SUCCESS
+  NOVELS_FETCH_LOCAL_SUCCESS,
+  NOVELS_FETCH_MORE_SUCCESS
 } from './types';
 import { uploadImage } from './ImageActions';
 
@@ -31,13 +32,42 @@ export const novelCreate = ({ name, author, description, imagePath }) => {
   };
 };
 
-export const novelsFetch = () => {
+export const novelsFetch = ({ indexPage = 1 }) => {
+  const pageSize = 4;
+  const startAt = indexPage === 0 ? 1 : (pageSize * indexPage) + 1;
   return (dispatch) => {
-    firebase.database().ref('/novels').limitToFirst(20)
+    firebase.database().ref('/novels')
+      .orderByChild('index')
+      .limitToFirst(pageSize)
+      .startAt(startAt)
       .on('value', snapshot => {
         dispatch({
           type: NOVELS_FETCH_SUCCESS,
-          payload: { prop: 'novels', value: snapshot.val() }
+          payload: [
+            { prop: 'novels', value: snapshot.val() },
+            { prop: 'indexPage', value: indexPage }
+          ]
+        });
+      });
+  };
+};
+
+export const novelsFetchMore = ({ indexPage = 0 }) => {
+  console.log(indexPage);
+  const pageSize = 4;
+  const startAt = indexPage === 0 ? 1 : (pageSize * indexPage) + 1;
+  return (dispatch) => {
+    firebase.database().ref('/novels')
+      .orderByChild('index')
+      .limitToFirst(pageSize)
+      .startAt(startAt)
+      .on('value', snapshot => {
+        dispatch({
+          type: NOVELS_FETCH_MORE_SUCCESS,
+          payload: [
+            { prop: 'novelsMore', value: snapshot.val() },
+            { prop: 'indexPage', value: indexPage }
+          ]
         });
       });
   };

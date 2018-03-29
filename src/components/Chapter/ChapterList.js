@@ -62,7 +62,7 @@ class ChapterList extends PureComponent {
           <Dropdown
             value={defaultPaging}
             onChangeText={this.onChangeText.bind(this)}
-            label='Chapters'
+            label='Chương'
             data={pagingList}
             containerStyle={{
               flexDirection: 'column',
@@ -116,7 +116,7 @@ const generaterPagingData = (totalChapters, pageSize) => {
   for (let i = 0; i <= count; i++) {
     const startAt = i === 0 ? 1 : (pageSize * i) + 1;
     const endAt = totalChapters > pageSize * (i + 1) ? pageSize * (i + 1) : totalChapters;
-    pagingData.push({ value: `${startAt}-${endAt}`, label: `${startAt}-${endAt}` });
+    pagingData.push({ value: `${startAt}-${endAt}`, label: `Chương: ${startAt}-${endAt}` });
   }
   console.log(pagingData);
   return pagingData;
