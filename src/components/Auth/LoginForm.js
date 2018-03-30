@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Input, Spinner, Button } from './common';
+import { emailChanged, passwordChanged, loginUser } from '../../actions';
+import { Card, CardSection, Input, Spinner, Button } from '../common';
 
 class LoginForm extends PureComponent {
 

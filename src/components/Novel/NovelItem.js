@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 // import { Actions } from 'react-native-router-flux';
-import { CardSection, ImageThumnail } from './common';
-import { loadChapterList } from '../actions';
+import { CardSection, ImageThumnail } from '../common';
+import { loadChapterList } from '../../actions';
 
 class ListItem extends PureComponent {
 

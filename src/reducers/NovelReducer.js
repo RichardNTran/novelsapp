@@ -20,10 +20,8 @@ export default (state = INITIAL_STATE, action) => {
       };
     case NOVELS_FETCH_MORE_SUCCESS:
       {
-        console.log('NOVELS_FETCH_MORE_SUCCESS');
         if (action.payload[0].value !== null) {
           const newNovels = Object.assign({}, state.novels, action.payload[0].value);
-          console.log(newNovels);
           return {
             ...state,
             novels: newNovels,

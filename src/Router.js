@@ -1,11 +1,11 @@
 import React from 'react';
 import { Scene, Router, Tabs, Stack, Actions } from 'react-native-router-flux';
 import { Icon } from 'native-base';
-import LoginForm from './components/LoginForm';
-import NovelList from './components/NovelList';
-import NovelCreate from './components/NovelCreate';
+import LoginForm from './components/Auth/LoginForm';
+import NovelList from './components/Novel/NovelList';
+import NovelCreate from './components/Novel/NovelCreate';
 import DefaultProps from './constants/navigation';
-import NovelCurrent from './components/NovelCurrent';
+import NovelCurrent from './components/Novel/NovelCurrent';
 import ChapterList from './components/Chapter/ChapterList';
 import ChapterCreate from './components/Chapter/ChapterCreate';
 import ChapterRead from './components/Chapter/ChapterRead';
