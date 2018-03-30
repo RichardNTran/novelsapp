@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React, { PureComponent } from 'react';
 import { FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
-import { novelsFetch, novelsFetchMore, novelsFetchLocal } from '../actions';
+import { novelsFetch, novelsFetchMore, novelsFetchLocal } from '../../actions';
 import NovelItem from './NovelItem';
-import { SearchBarLocal } from './common';
+import { SearchBarLocal } from '../common';
 
 class NovelList extends PureComponent {
 
@@ -36,8 +36,7 @@ class NovelList extends PureComponent {
   }
 
   handleLoadMore() {
-    console.log('handleLoadMore');
-    this.props.novelsFetchMore({ indexPage: (this.props.indexPage + 1) });
+    this.props.novelsFetchMore({ indexPage: (this.props.indexPage) });
   }
 
   renderItem(novel) {

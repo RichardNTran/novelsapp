@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-crop-picker';
-import { novelUpdate } from '../actions';
-import { CardSection, Input, ImageThumnail } from './common';
+import { novelUpdate } from '../../actions';
+import { CardSection, Input, ImageThumnail } from '../common';
 
 class NovelForm extends PureComponent {
 
@@ -14,7 +14,6 @@ class NovelForm extends PureComponent {
       cropping: true,
       mediaType: 'photo'
     }).then(image => {
-      console.log(image);
       this.props.novelUpdate({ prop: 'imagePath', value: image.path });
     })
       .catch((error) => {
