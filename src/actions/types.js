@@ -7,6 +7,7 @@ export const LOGIN_USER_FAIL = 'login_user_fail';
 
 // list novel actions
 export const NOVELS_FETCH_SUCCESS = 'novels_fetch_success';
+export const NOVELS_FETCH_MORE_SUCCESS = 'novels_fetch_more_success';
 export const NOVELS_FETCH_LOCAL_SUCCESS = 'novel_fetch_local_success';
 
 // novel actions

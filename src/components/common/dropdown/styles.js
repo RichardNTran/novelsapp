@@ -34,9 +34,10 @@ export default StyleSheet.create({
   picker: {
     backgroundColor: 'rgba(255, 255, 255, 1.0)',
     borderRadius: 2,
-
+    marginTop: 8,
     position: 'absolute',
-
+    flexDirection: 'column',
+    justifyContent: 'center',
     ...Platform.select({
       ios: {
         shadowRadius: 2,
@@ -52,7 +53,8 @@ export default StyleSheet.create({
   },
 
   item: {
-    textAlign: 'left',
+    textAlign: 'center',
+    color: 'blue'
   },
 
   scroll: {

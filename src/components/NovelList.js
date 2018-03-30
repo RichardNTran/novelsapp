@@ -2,14 +2,21 @@ import _ from 'lodash';
 import React, { PureComponent } from 'react';
 import { FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
-import { novelsFetch, novelsFetchLocal } from '../actions';
+import { novelsFetch, novelsFetchMore, novelsFetchLocal } from '../actions';
 import NovelItem from './NovelItem';
 import { SearchBarLocal } from './common';
 
 class NovelList extends PureComponent {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false
+    };
+  }
+
   componentWillMount() {
-    this.props.novelsFetch();
+    this.props.novelsFetch({ indexPage: this.props.indexPage });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,6 +33,11 @@ class NovelList extends PureComponent {
 
   handleResults(results) {
     this.props.novelsFetchLocal(results);
+  }
+
+  handleLoadMore() {
+    console.log('handleLoadMore');
+    this.props.novelsFetchMore({ indexPage: (this.props.indexPage + 1) });
   }
 
   renderItem(novel) {
@@ -48,6 +60,8 @@ class NovelList extends PureComponent {
             numColumns={1}
             data={this.dataSource}
             renderItem={this.renderItem}
+            onEndReached={this.handleLoadMore.bind(this)}
+            onEndReachedThreshold={0}
           />
         </View>
       </View >
@@ -74,13 +88,16 @@ const mapStateToProps = (state) => {
   const novels = _.map(state.listData.novels, (val, uid) => {
     return { ...val, uid };
   });
+  const indexPage = state.listData.indexPage;
   let novelsLocal = {};
   if (state.listData.novelsLocal === null) {
     novelsLocal = novels;
   } else {
     novelsLocal = state.listData.novelsLocal;
   }
-  return { novels, novelsLocal };
+  return { novels, novelsLocal, indexPage };
 };
 
-export default connect(mapStateToProps, { novelsFetch, novelsFetchLocal })(NovelList);
+export default connect(mapStateToProps, {
+  novelsFetch, novelsFetchMore, novelsFetchLocal
+})(NovelList);

@@ -4,6 +4,7 @@ export default StyleSheet.create({
   container: {
     paddingVertical: 8,
     borderRadius: 0,
+    flexDirection: 'row',
     justifyContent: 'center',
   },
 });
