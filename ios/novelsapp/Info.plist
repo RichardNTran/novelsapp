@@ -38,7 +38,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Take photo for Novel</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Using micro for app</string>
 	<key>NSPhotoLibraryUsageDescription</key>

@@ -60,7 +60,7 @@ class NovelList extends PureComponent {
             data={this.dataSource}
             renderItem={this.renderItem}
             onEndReached={this.handleLoadMore.bind(this)}
-            onEndReachedThreshold={0}
+       
           />
         </View>
       </View >
