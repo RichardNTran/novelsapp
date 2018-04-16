@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
 import reducers from './reducers';
 import Router from './Router';
+
+const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 
 class App extends Component {
   componentWillMount() {
@@ -20,7 +23,11 @@ class App extends Component {
   }
 
   render() {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+    const store = createStore(reducers, {}, applyMiddleware(
+      ReduxThunk,
+      loggerMiddleware
+    
+    ));
     return (
       <Provider store={store}>
         <Router />
